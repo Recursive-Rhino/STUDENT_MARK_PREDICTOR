@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Score Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css?v=3" />
+</head>
+
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+
+  <div class="page-wrapper">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">🎓</div>
+        <span class="logo-text">GradeVision</span>
+      </div>
+      <nav class="nav-badges">
+        <span class="badge">ML Powered</span>
+        <span class="badge badge-green">Live</span>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <p class="hero-tag">✦ Smart Prediction Engine</p>
+      <h1 class="hero-title">
+        Predict Your<br />
+        <span class="gradient-text">Exam Score</span>
+      </h1>
+      <p class="hero-sub">
+        Powered by machine learning — input your habits and instantly<br class="hide-mobile" />
+        see your predicted academic performance.
+      </p>
+    </section>
+
+    <!-- Card — NO <form> wrapper, pure divs -->
+    <main class="card-container">
+      <div class="glass-card">
+
+        <!-- Progress bar -->
+        <div class="progress-bar-wrapper">
+          <div class="progress-label">
+            <span>Setup your profile</span>
+            <span id="progress-text">5 / 5 filled</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width:100%"></div>
+          </div>
+        </div>
+
+        <!-- ── Study Hours ── -->
+        <div class="input-group">
+          <div class="input-header">
+            <div class="input-icon">📚</div>
+            <div class="input-meta">
+              <label>Study Hours / Day</label>
+              <span class="hint">More time, better results</span>
+            </div>
+            <div class="value-pill" id="val-study_hours">2.0 hrs</div>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="study_hours" min="0" max="12" step="0.5" value="2" class="range-slider" />
+            <div class="range-labels"><span>0 hrs</span><span>12 hrs</span></div>
+          </div>
+        </div>
+
+        <!-- ── Attendance ── -->
+        <div class="input-group">
+          <div class="input-header">
+            <div class="input-icon">🏫</div>
+            <div class="input-meta">
+              <label>Attendance Percentage</label>
+              <span class="hint">Consistency pays off</span>
+            </div>
+            <div class="value-pill" id="val-attendance">80%</div>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="attendance" min="0" max="100" step="1" value="80" class="range-slider" />
+            <div class="range-labels"><span>0%</span><span>100%</span></div>
+          </div>
+        </div>
+
+        <!-- ── Mental Health ── -->
+        <div class="input-group">
+          <div class="input-header">
+            <div class="input-icon">🧠</div>
+            <div class="input-meta">
+              <label>Mental Health Rating</label>
+              <span class="hint">Your wellbeing matters</span>
+            </div>
+            <div class="value-pill" id="val-mental_health">5 / 10</div>
+          </div>
+          <div class="mood-row">
+            <button type="button" class="mood-btn" data-val="1" title="Very Bad">😞</button>
+            <button type="button" class="mood-btn" data-val="2" title="Bad">😕</button>
+            <button type="button" class="mood-btn" data-val="3" title="Below Average">😐</button>
+            <button type="button" class="mood-btn" data-val="4" title="Okay">🙂</button>
+            <button type="button" class="mood-btn active" data-val="5" title="Good">😊</button>
+            <button type="button" class="mood-btn" data-val="6" title="Pretty Good">😁</button>
+            <button type="button" class="mood-btn" data-val="7" title="Great">😃</button>
+            <button type="button" class="mood-btn" data-val="8" title="Very Great">🤩</button>
+            <button type="button" class="mood-btn" data-val="9" title="Excellent">🥳</button>
+            <button type="button" class="mood-btn" data-val="10" title="Perfect">🌟</button>
+          </div>
+        </div>
+
+        <!-- ── Sleep Hours ── -->
+        <div class="input-group">
+          <div class="input-header">
+            <div class="input-icon">🌙</div>
+            <div class="input-meta">
+              <label>Sleep Hours / Night</label>
+              <span class="hint">Rest is fuel for the brain</span>
+            </div>
+            <div class="value-pill" id="val-sleep_hours">7.0 hrs</div>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="sleep_hours" min="0" max="12" step="0.5" value="7" class="range-slider" />
+            <div class="range-labels"><span>0 hrs</span><span>12 hrs</span></div>
+          </div>
+        </div>
+
+        <!-- ── Part-Time Job ── -->
+        <div class="input-group">
+          <div class="input-header">
+            <div class="input-icon">💼</div>
+            <div class="input-meta">
+              <label>Part-Time Job</label>
+              <span class="hint">Do you work alongside studies?</span>
+            </div>
+          </div>
+          <div class="toggle-group">
+            <button type="button" class="toggle-btn active" id="ptj-no">
+              <span class="toggle-icon">✗</span> No
+            </button>
+            <button type="button" class="toggle-btn" id="ptj-yes">
+              <span class="toggle-icon">✓</span> Yes
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Predict Button ── -->
+        <button type="button" class="predict-btn" id="predict-btn">
+          <span class="btn-text">Predict My Score</span>
+          <span class="btn-icon">→</span>
+          <div class="btn-ripple"></div>
+        </button>
+
+        <!-- ── Result Panel ── -->
+        <div class="result-panel" id="result-panel">
+          <div class="result-inner">
+            <div class="result-label">Your Predicted Exam Score</div>
+            <div class="score-display">
+              <div class="score-ring">
+                <svg class="ring-svg" viewBox="0 0 120 120">
+                  <defs>
+                    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#7c6aff" />
+                      <stop offset="50%" stop-color="#38bdf8" />
+                      <stop offset="100%" stop-color="#34d399" />
+                    </linearGradient>
+                  </defs>
+                  <circle class="ring-bg" cx="60" cy="60" r="50" />
+                  <circle class="ring-fill" cx="60" cy="60" r="50" id="ring-fill" stroke="url(#ringGrad)"
+                    stroke-dasharray="314" stroke-dashoffset="314" />
+                </svg>
+                <div class="score-number" id="score-number">--</div>
+              </div>
+              <div class="score-meta">
+                <div class="score-grade" id="score-grade">--</div>
+                <div class="score-feedback" id="score-feedback"></div>
+                <div class="score-breakdown" id="score-breakdown"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Built with ❤️ · Powered by Machine Learning</p>
+    </footer>
+
+  </div>
+
+  <script src="/static/script.js?v=3"></script>
+</body>
+
+</html>

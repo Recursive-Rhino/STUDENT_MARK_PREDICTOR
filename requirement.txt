@@ -5,3 +5,4 @@ kagglehub
 seaborn
 scikit-learn
 streamlit
+flask
